@@ -1,24 +1,28 @@
 // Do not change the line below
-import { errorMessage, successMessage } from './app.js';
+import { errorMessage, successMessage } from "./app.js";
 
 let incorrectAttempts = 0;
 
 function onLogin(username, password) {
+  const isValid =
+    (username === "admin" && password === "Hack1234") ||
+    (username === "user" && password === "7654321");
 
-  const isValid = (username === "admin" && password === "Hack1234") || (username === "user" && password === "7654321");
-
-  if(incorrectAttempts > 3) {
-    errorMessage('Login blocked: Too many incorrect attempts');
-    return
-  } else if (isValid){
+  if (incorrectAttempts > 3) {
+    errorMessage("Login blocked: Too many incorrect attempts");
+    return;
+  } else if (isValid) {
     incorrectAttempts = 0;
-    successMessage('Logged in successfully');
+    successMessage("Logged in successfully");
   } else {
     incorrectAttempts++;
-    if(incorrectAttempts === 4){errorMessage('Login blocked: Too many incorrect attempts');} else {
-    errorMessage('Incorrect credentials')}}
+    if (incorrectAttempts === 4) {
+      errorMessage("Login blocked: Too many incorrect attempts");
+    } else {
+      errorMessage("Incorrect credentials");
+    }
   }
-
+}
 
 // Do not change the line below
 export { onLogin };
